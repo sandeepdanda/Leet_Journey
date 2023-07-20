@@ -1,0 +1,49 @@
+Question :
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+
+solution:
+
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        char_count = {}
+        if len(s) != len(t):
+            return False
+        for char in s:
+            char_count[char] = char_count.get(char, 0)+1
+
+        for char in t:
+            if char not in char_count or char_count[char]==0:
+                return False
+            char_count[char] -= 1
+        return True
+
+
+
+
+      Description:
+
+      we first check if the lengths of both strings are equal. 
+      If not, they cannot be anagrams, so we return False early. 
+      Then, we use a dictionary char_count to count the occurrences of each character in the s string. 
+      After that, we traverse the t string and decrement the count of characters present in char_count. 
+      If we find a character that is not present in char_count or if its count becomes zero, it means the two strings are not anagrams,
+      so we return False.
